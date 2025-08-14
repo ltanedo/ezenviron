@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="ezenviron",
-    version="0.1.0",
+    version="0.2.0",
     author="ltanedo",
     author_email="lloydtan@buffalo.edu",
     description="A python module enabling crud on windows user env vars enabling safe API development",
