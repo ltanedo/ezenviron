@@ -140,6 +140,6 @@ fi
 info "Release $TAG created/updated successfully."
 echo
 echo "Install from any machine via pip:"
-echo "  pip install git+https://github.com/$REPO.git@$TAG#egg=$PACKAGE_NAME"
+echo "  pip install git+https://github.com/$REPO.git@$TAG#egg=$PACKAGE_NAME --user"
 echo
 
