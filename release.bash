@@ -107,7 +107,7 @@ git push origin "$TARGET_BRANCH" --tags
 
 # Build Python package (sdist + wheel)
 info "Installing/Updating build tooling"
-python3 -m pip install --upgrade build >/dev/null
+python3 -m pip install --upgrade build >/dev/null --break-system-packages
 
 info "Building package artifacts"
 rm -rf dist
