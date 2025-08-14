@@ -32,7 +32,7 @@ __version__ = "0.1.0"
 __author__ = "ltanedo"
 __email__ = "lloydtan@buffalo.edu"
 
-__all__ = ["get", "set", "load_dotenv", "reload"]
+__all__ = ["get", "set", "load_dotenv", "reload", "get_username"]
 
 
 def _ensure_windows() -> None:
@@ -101,6 +101,57 @@ def get(key: str, power_shell: bool = False) -> Optional[str]:
 
     return os.environ.get(key)
 
+
+
+
+def get_username(prefix: str = "", postfix: str = "") -> str:
+    """Retrieve the current Windows username via PowerShell.
+
+    Attempts to read `$env:USERNAME` using a PowerShell subprocess.
+    If that yields no result, falls back to an alternate PowerShell expression
+    and finally to common Python methods.
+
+    Args:
+        prefix: Text to prepend to the username.
+        postfix: Text to append to the username.
+
+    Returns:
+        The username with optional prefix and postfix applied.
+    """
+    _ensure_windows()
+
+    username: str = ""
+
+    # Primary approach: PowerShell environment variable
+    try:
+        result = _run_powershell("$env:USERNAME")
+        username = (result.stdout or "").strip()
+    except Exception:
+        # We'll try fallbacks below
+        pass
+
+    # Fallback 1: .NET API via PowerShell
+    if not username:
+        try:
+            alt = _run_powershell("[System.Environment]::UserName")
+            username = (alt.stdout or "").strip()
+        except Exception:
+            pass
+
+    # Fallback 2: Python environment / getpass
+    if not username:
+        username = os.environ.get("USERNAME", "")
+        if not username:
+            try:
+                import getpass
+                username = getpass.getuser()
+            except Exception:
+                username = ""
+
+    if not username:
+        raise RuntimeError("Unable to determine the current Windows username")
+
+    return f"{prefix}{username}{postfix}"
 
 def set(key: str, value: str, auto_reload: bool = True) -> bool:
     """Set a single user environment variable.
