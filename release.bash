@@ -88,10 +88,19 @@ info "Checking out $TARGET_BRANCH and pulling latest"
 git checkout "$TARGET_BRANCH"
 git pull --ff-only
 
-# Ensure working tree is clean
-if [[ -n "$(git status --porcelain)" ]]; then
+# Warn and abort if there are any untracked files
+UNTRACKED="$(git ls-files --others --exclude-standard || true)"
+if [[ -n "$UNTRACKED" ]]; then
+  echo "[WARN] Untracked files detected (not committed to git):"
+  echo "$UNTRACKED" | sed 's/^/  - /'
+  echo "[WARN] These files will not be part of the release."
+  abort "Untracked files present. Commit, stash, clean, or .gitignore them before releasing."
+fi
+
+# Ensure there are no tracked changes (staged or unstaged)
+if ! git diff --quiet || ! git diff --cached --quiet; then
   git status
-  abort "Working tree not clean. Commit or stash changes before releasing."
+  abort "Working tree has tracked changes. Commit or stash changes before releasing."
 fi
 
 # Create annotated tag if missing, then push branch and tags
