@@ -1,0 +1,6 @@
+# Example of installing the released package directly from the GitHub tag
+# Replace v0.1.0 with the tag created from release.yaml (prefix + version)
+# Either install directly:
+#   pip install git+https://github.com/ltanedo/ezenviron.git@v0.1.0#egg=ezenviron
+# Or via this requirements file:
+git+https://github.com/ltanedo/ezenviron.git@v0.1.0#egg=ezenviron

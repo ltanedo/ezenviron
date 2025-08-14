@@ -1,0 +1,28 @@
+# Configuration for creating a GitHub release of the ezenviron package
+# Keep keys simple (top-level only) so the PowerShell parser can read them easily.
+
+# GitHub repository in the form "owner/repo"
+repo: ltanedo/ezenviron
+
+# Python package name
+package_name: ezenviron
+
+# How to determine the version for the tag/release.
+# Set to "auto" to read from setup.py (version="X.Y.Z").
+# Or set explicitly, e.g. "0.1.0".
+version: auto
+
+# Prefix used for the git tag (e.g., v0.1.0)
+tag_prefix: v
+
+# Target branch for tagging (used as a sanity check only)
+target_branch: master
+
+# Relative path to a file to use as the release notes/body.
+# If missing, the script will fall back to README.md
+release_notes_file: CHANGELOG.md
+
+# GitHub release flags
+draft: false
+prerelease: false
+
