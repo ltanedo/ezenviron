@@ -1,0 +1,58 @@
+# PipHub Configuration - Contains all setup() function arguments for setup.py
+# This file is used to automatically generate setup.py and manage releases
+
+# Required setup() arguments
+name: "ezenviron"
+version: "0.3.0"
+author: "ltanedo"
+author_email: "lloydtan@buffalo.edu"
+description: "A python module enabling CRUD on Windows user env vars for safe API development"
+url: "https://github.com/ltanedo/ezenviron"
+
+# Optional setup() arguments
+license: "MIT"
+long_description_content_type: "text/markdown"
+python_requires: ">=3.7"
+
+# Entry points to expose a CLI on install
+entry_points:
+  console_scripts:
+    - "ezenviron=ezenviron.__init__:main"
+
+# Package discovery
+# packages will be auto-discovered with find_packages()
+
+# Dependencies (use YAML list format)
+install_requires: []
+
+# Keywords for PyPI
+keywords: ["windows", "environment", "variables", "cli", "utilities"]
+
+# Classifiers for PyPI
+classifiers: [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11"
+]
+
+# Project URLs
+project_urls: {
+    "Bug Reports": "https://github.com/ltanedo/ezenviron/issues",
+    "Source": "https://github.com/ltanedo/ezenviron",
+    "Documentation": "https://github.com/ltanedo/ezenviron#readme"
+}
+
+# Release-specific settings (not part of setup())
+tag_prefix: "v"
+target_branch: "master"
+release_notes_file: "README.md"
+draft: false
+prerelease: false
+auto_commit_requirements: true

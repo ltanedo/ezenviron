@@ -6,10 +6,10 @@ This is a placeholder implementation for the CLI functionality.
 
 import argparse
 import sys
-from typing import Optional, Any
+from typing import Optional, Any, List
 
 
-def import_cli(module: Any, argv: Optional[list[str]] = None) -> None:
+def import_cli(module: Any, argv: Optional[List[str]] = None) -> None:
     """Simple CLI implementation for the ezenviron module."""
     if argv is None:
         argv = sys.argv[1:]

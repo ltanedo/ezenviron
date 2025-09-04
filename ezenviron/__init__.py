@@ -28,7 +28,7 @@ import re
 import winreg
 from typing import Dict, Optional, Tuple
 
-__version__ = "0.1.0"
+__version__ = "0.3.0"
 __author__ = "ltanedo"
 __email__ = "lloydtan@buffalo.edu"
 
